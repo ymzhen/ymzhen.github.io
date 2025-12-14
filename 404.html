@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>页面未找到 | 你的网站名</title>
     <style>
-        /* 基础样式与变量定义 */
         :root {
             --primary-color: #4f46e5;
             --primary-hover: #4338ca;
@@ -34,7 +33,6 @@
             line-height: 1.6;
         }
 
-        /* 主容器卡片 */
         .container {
             max-width: 800px;
             width: 100%;
@@ -45,7 +43,6 @@
             box-shadow: var(--shadow);
         }
 
-        /* 标题与副标题 */
         .error-code {
             font-size: 8rem;
             font-weight: 800;
@@ -71,65 +68,47 @@
             margin-right: auto;
         }
 
-        /* 交互式SVG插图容器 */
         .illustration {
             max-width: 400px;
             margin: 0 auto 60px;
         }
 
-        /* 按钮组样式 */
-        .actions {
+        /* 按钮现在单独居中 */
+        .action {
             display: flex;
-            gap: 20px;
             justify-content: center;
-            flex-wrap: wrap;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 16px 32px;
+            padding: 16px 40px;
             font-size: 1.125rem;
             font-weight: 600;
             border-radius: 16px;
             text-decoration: none;
+            background-color: var(--primary-color);
+            color: white;
             cursor: pointer;
             transition: all 0.3s ease;
             border: none;
             outline: none;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
             box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
         }
 
-        .btn-primary:hover {
+        .btn:hover {
             background-color: var(--primary-hover);
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
         }
 
-        .btn-secondary {
-            background-color: #f3f4f6;
-            color: var(--text-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: #e5e7eb;
-            transform: translateY(-2px);
-        }
-
-        /* 响应式设计 */
         @media (max-width: 768px) {
             .error-code { font-size: 6rem; }
             h1 { font-size: 2rem; }
             .subtitle { font-size: 1.125rem; }
             .container { padding: 40px 24px; }
-            .btn { width: 100%; padding: 14px 28px; }
-            .actions { flex-direction: column; }
+            .btn { width: 100%; max-width: 280px; padding: 14px 28px; }
         }
 
         @media (max-width: 480px) {
@@ -141,23 +120,15 @@
 <body>
     <main class="container" role="main">
         <div class="illustration">
-            <!-- 可交互的404 SVG插图 -->
             <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                <!-- 背景元素 -->
                 <rect x="50" y="50" width="300" height="200" rx="20" fill="#f0f4ff" stroke="#4f46e5" stroke-width="2"/>
-                
-                <!-- “404”文字 -->
                 <text x="200" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="#4f46e5">404</text>
-                
-                <!-- 可点击的漂浮元素 -->
                 <circle id="float-circle" cx="100" cy="100" r="12" fill="#818cf8">
                     <animate attributeName="cy" values="100;90;100" dur="2s" repeatCount="indefinite"/>
                 </circle>
                 <rect id="float-rect" x="280" y="180" width="24" height="24" rx="4" fill="#60a5fa">
                     <animate attributeName="y" values="180;170;180" dur="2.5s" repeatCount="indefinite"/>
                 </rect>
-                
-                <!-- 搜索图标（放大镜） -->
                 <g transform="translate(160, 200)">
                     <circle cx="20" cy="20" r="18" fill="none" stroke="#9ca3af" stroke-width="3" stroke-dasharray="2"/>
                     <line x1="35" y1="35" x2="50" y2="50" stroke="#9ca3af" stroke-width="3"/>
@@ -168,31 +139,21 @@
         <div class="error-code" aria-label="错误代码">404</div>
         <h1>页面已迷失在数字宇宙</h1>
         <p class="subtitle">
-            您寻找的页面可能已被移动、更名，或者暂时不可用。别担心，让我们帮您导航回正确的轨道。
+            您寻找的页面可能已被移动、更名，或者暂时不可用。让我们带您返回首页。
         </p>
         
-        <div class="actions">
-            <!-- 主要操作：返回首页 -->
-            <a href="/" class="btn btn-primary">
-                <svg style="width:20px;height:20px;margin-right:8px;" viewBox="0 0 24 24" fill="white">
+        <div class="action">
+            <a href="/" class="btn">
+                <svg style="width:20px;height:20px;margin-right:12px;" viewBox="0 0 24 24" fill="white">
                     <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
                 </svg>
                 返回首页
             </a>
-            <!-- 次要操作：联系支持（示例链接，可修改） -->
-            <a href="mailto:your-email@example.com" class="btn btn-secondary">
-                <svg style="width:20px;height:20px;margin-right:8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-                </svg>
-                寻求帮助
-            </a>
         </div>
     </main>
 
-    <!-- 简单的交互脚本 -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 为SVG中的浮动元素添加点击互动效果
             const floatCircle = document.getElementById('float-circle');
             const floatRect = document.getElementById('float-rect');
             
@@ -209,9 +170,6 @@
                     setTimeout(() => { this.style.transform = 'scale(1)'; }, 300);
                 });
             }
-
-            // 添加一个简单的控制台问候（可选）
-            console.log('🔍 404页面已加载。需要帮助吗？');
         });
     </script>
 </body>
