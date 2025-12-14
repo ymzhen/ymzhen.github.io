@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你的网站名 | 欢迎</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 使用与404页面相同的设计变量 */
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #f0f4ff;
+            --text-color: #374151;
+            --light-text: #6b7280;
+            --bg-color: #f9fafb;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --radius: 16px;
+            --radius-sm: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* 导航栏样式 */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* 主内容区域 */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* 英雄区域 */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+            padding: 40px 0;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--light-text);
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* 英雄插图 */
+        .hero-illustration {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* 卡片区域 */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: var(--text-color);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 80px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--primary-color);
+            font-size: 1.75rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-color);
+        }
+
+        .card p {
+            color: var(--light-text);
+            margin-bottom: 24px;
+        }
+
+        .card-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.2s;
+        }
+
+        .card-link:hover {
+            gap: 12px;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 60px 0 40px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-logo .logo-icon {
+            color: var(--primary-color);
+        }
+
+        .footer-about {
+            color: var(--light-text);
+            max-width: 400px;
+        }
+
+        .footer-links h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+            color: var(--light-text);
+            font-size: 0.95rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            
+            .hero-content {
+                order: 1;
+            }
+            
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-btns {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+                padding: 16px 0;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.75rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.25rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <i class="fas fa-cube logo-icon"></i>
+                    <span>YourSite</span>
+                </a>
+                <div class="nav-links">
+                    <a href="/" class="active">首页</a>
+                    <a href="#">项目</a>
+                    <a href="#">博客</a>
+                    <a href="#">关于</a>
+                    <a href="#">联系</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="main-container">
+        <!-- 英雄区域 -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>欢迎来到我的数字空间</h1>
+                <p>
+                    这里是一个充满创意与技术的交汇点。我在这里分享项目、记录学习历程，并与世界连接。
+                </p>
+                <div class="hero-btns">
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-rocket" style="margin-right: 8px;"></i>
+                        探索项目
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fas fa-envelope" style="margin-right: 8px;"></i>
+                        联系我
+                    </a>
+                </div>
+            </div>
+            <div class="hero-illustration">
+                <!-- 与404页面风格一致的SVG插图 -->
+                <svg class="hero-svg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="50" y="50" width="400" height="300" rx="24" fill="#f0f4ff" stroke="#4f46e5" stroke-width="2"/>
+                    
+                    <!-- 主要建筑/元素 -->
+                    <rect x="120" y="120" width="80" height="180" fill="#818cf8" rx="8"/>
+                    <rect x="230" y="150" width="100" height="150" fill="#60a5fa" rx="8"/>
+                    <rect x="360" y="180" width="60" height="120" fill="#4f46e5" rx="8"/>
+                    
+                    <!-- 装饰性元素 -->
+                    <circle cx="160" cy="100" r="16" fill="#ec4899">
+                        <animate attributeName="cy" values="100;90;100" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <rect x="280" y="90" width="24" height="24" fill="#10b981" rx="4">
+                        <animate attributeName="y" values="90;80;90" dur="2.5s" repeatCount="indefinite"/>
+                    </rect>
+                    
+                    <!-- 云朵 -->
+                    <circle cx="400" cy="80" r="20" fill="#e0e7ff"/>
+                    <circle cx="430" cy="80" r="24" fill="#e0e7ff"/>
+                    <circle cx="460" cy="80" r="18" fill="#e0e7ff"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- 特色卡片 -->
+        <h2 class="section-title">探索更多</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>技术项目</h3>
+                <p>查看我开发的开源项目和技术实验，涵盖前端、后端和各种有趣的工具。</p>
+                <a href="#" class="card-link">
+                    浏览项目
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-blog"></i>
+                </div>
+                <h3>技术博客</h3>
+                <p>阅读关于编程、设计和技术的文章，分享学习心得和解决问题的过程。</p>
+                <a href="#" class="card-link">
+                    阅读文章
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h3>关于我</h3>
+                <p>了解我的背景、技能和经历，以及我如何走到今天的编程之旅。</p>
+                <a href="#" class="card-link">
+                    了解我
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <i class="fas fa-cube logo-icon"></i>
+                    <span>YourSite</span>
+                </div>
+                <p>
+                    这是一个基于GitHub Pages构建的个人网站，用于展示项目、分享知识并记录成长。
+                </p>
+            </div>
+            <div class="footer-links">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="#">项目</a></li>
+                    <li><a href="#">博客</a></li>
+                    <li><a href="#">关于</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 YourSite. 基于GitHub Pages构建。</p>
+        </div>
+    </footer>
+
+    <!-- 交互脚本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 导航栏滚动效果
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)';
+                }
+            });
+            
+            // 卡片悬停效果增强
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+                });
+            });
+            
+            // 控制台欢迎信息
+            console.log('🚀 欢迎来到我的GitHub Pages网站！希望你喜欢这个设计。');
+        });
+    </script>
+</body>
+</html>
